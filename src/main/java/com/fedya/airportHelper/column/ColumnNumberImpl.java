@@ -1,4 +1,4 @@
-package column;
+package com.fedya.airportHelper.column;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ColumnImpl implements Column{
+public class ColumnNumberImpl implements ColumnNumber {
     private Integer columnNumber;
     @Override
     public int getNumber(String[] mainArgs) {

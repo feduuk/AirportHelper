@@ -30,7 +30,7 @@
 <!--                    <archive>-->
 <!--                        <manifest>-->
 <!--                            <addClasspath>true</addClasspath>-->
-<!--                            <mainClass>Main</mainClass>-->
+<!--                            <mainClass>com.fedya.airportHelper.Main</mainClass>-->
 <!--                        </manifest>-->
 <!--                    </archive>-->
 <!--                    <descriptorRefs>-->
@@ -84,7 +84,7 @@
 <!--                            <addClasspath>true</addClasspath>-->
 <!--                            <classpathPrefix>libs/</classpathPrefix>-->
 <!--                            <mainClass>-->
-<!--                                Main-->
+<!--                                com.fedya.airportHelper.Main-->
 <!--                            </mainClass>-->
 <!--                        </manifest>-->
 <!--                    </archive>-->
@@ -105,7 +105,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        Main
+                                        com.fedya.airportHelper.Main
                                     </mainClass>
                                 </manifest>
                             </archive>
