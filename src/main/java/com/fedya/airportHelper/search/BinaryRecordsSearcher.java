@@ -1,39 +1,33 @@
 package com.fedya.airportHelper.search;
 
-import com.fedya.airportHelper.Record;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class BinaryRecordsSearcher implements RecordsSearcher {
     @Override
-    public List<Integer> search(List<Record> records, String lineForSearch) {
-        List<Integer> indexes = new ArrayList<>();
-        if(lineForSearch == null) return indexes;
-        Record dummyRecord = new Record(-1, lineForSearch);
-        int indexOfFoundRecord = Collections.binarySearch(records, dummyRecord, (o1, o2) -> {
-            String content1 = o1.getRecordContent();
-            String content2 = o2.getRecordContent();
-            return content1.substring(0, Math.min(content2.length(), content1.length())).compareTo(content2);
-        });
+    public List<String> search(List<String> records, String lineForSearch) {
+        List<String> foundRecords = new ArrayList<>();
+        if(lineForSearch == null) return foundRecords;
+        int indexOfFoundRecord = Collections.binarySearch(records, lineForSearch,
+                (o1, o2) -> o1.substring(0, Math.min(o2.length(), o1.length())).compareTo(o2));
         if(indexOfFoundRecord >= 0) {
-            indexes.add(records.get(indexOfFoundRecord).getIndex());
+            foundRecords.add(records.get(indexOfFoundRecord));
             for (int indexUp = indexOfFoundRecord + 1; indexUp < records.size(); indexUp++) {
-                if (records.get(indexUp).getRecordContent().startsWith(lineForSearch)) {
-                    indexes.add(records.get(indexUp).getIndex());
+                if (records.get(indexUp).startsWith(lineForSearch)) {
+                    foundRecords.add(records.get(indexUp));
                 } else {
                     break;
                 }
             }
             for (int indexDown = indexOfFoundRecord - 1; indexDown >= 0 ; indexDown--) {
-                if (records.get(indexDown).getRecordContent().startsWith(lineForSearch)) {
-                    indexes.add(records.get(indexDown).getIndex());
+                if (records.get(indexDown).startsWith(lineForSearch)) {
+                    foundRecords.add(records.get(indexDown));
                 } else {
                     break;
                 }
             }
         }
-        return indexes;
+        return foundRecords;
     }
 }

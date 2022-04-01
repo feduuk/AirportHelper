@@ -1,7 +1,5 @@
 package com.fedya.airportHelper.reader;
 
-import com.fedya.airportHelper.Record;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -22,14 +20,11 @@ public class FileRecordsReader implements RecordsReader {
     }
 
     @Override
-    public List<Record> get(int columnNumber){
-        List<Record> records = new ArrayList<>();
+    public List<String> get(int columnNumber){
+        List<String> records = new ArrayList<>();
         try (Scanner scanner = new FileScanner().getScanner(file)) {
-            int index = 0;
             while (scanner.hasNextLine()) {
-                String content = getRecordFromLine(scanner.nextLine(), columnNumber);
-                records.add(new Record(index, content));
-                index++;
+                records.add(scanner.nextLine());
             }
             return records;
         }
@@ -39,6 +34,7 @@ public class FileRecordsReader implements RecordsReader {
         return records;
     }
     private String getRecordFromLine(String line, int columnNumber) {
+        //TODO: use this method because probably forgot and make another branch
         List<String> values = new ArrayList<>();
         try (Scanner rowScanner = new Scanner(line)) {
             rowScanner.useDelimiter(",");

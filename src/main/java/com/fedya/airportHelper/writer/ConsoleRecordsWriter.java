@@ -2,8 +2,7 @@ package com.fedya.airportHelper.writer;
 
 import com.fedya.airportHelper.reader.FileScanner;
 
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ConsoleRecordsWriter implements RecordsWriter{
     String file;
@@ -19,20 +18,21 @@ public class ConsoleRecordsWriter implements RecordsWriter{
     public void setFile(String file) {
         this.file = file;
     }
-
     @Override
-    public void write(List<Integer> indexes){
+    public void write(List<String> records){
+        String[] fullRecords = new String[records.size()];
+
         try (Scanner scanner = new FileScanner().getScanner(file)) {
-            int index = 0;
             while (scanner.hasNextLine()) {
-                if(indexes.contains(index)){
-                    System.out.println(scanner.nextLine());
-                }else{
+                if (records.contains(index)) {
+
+                    fullRecords[] = scanner.nextLine();
+                } else {
                     scanner.nextLine();
                 }
-                index++;
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
