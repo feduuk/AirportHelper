@@ -8,7 +8,7 @@ public class ColumnReader {
     public String getRecordFromLine(String line, int columnNumber) throws Exception {
 
         if(line == null) throw new Exception("String can't be null!");
-        if(columnNumber < 0) throw new Exception("columnNumber has to be positive!");
+        if(columnNumber <= 0) throw new Exception("columnNumber has to be positive!");
         List<String> values = new ArrayList<>();
         try (Scanner rowScanner = new Scanner(line)) {
             rowScanner.useDelimiter(",");
