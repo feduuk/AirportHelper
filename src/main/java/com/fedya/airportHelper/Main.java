@@ -36,7 +36,7 @@ public class Main {
             long searchingTime = endTime - startTime;
 
 
-            RecordsWriter recordsWriter = new ConsoleRecordsWriter(fileName);
+            RecordsWriter recordsWriter = new ConsoleRecordsWriter(fileName, columnNumber);
             recordsWriter.write(foundRecords);
             System.out.println("\nNumber of found lines: " + foundRecords.size());
             System.out.println("Searching took " + searchingTime + " milliseconds");

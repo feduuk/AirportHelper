@@ -22,9 +22,10 @@ public class FileRecordsReader implements RecordsReader {
     @Override
     public List<String> get(int columnNumber){
         List<String> records = new ArrayList<>();
+        ColumnReader columnReader = new ColumnReader();
         try (Scanner scanner = new FileScanner().getScanner(file)) {
             while (scanner.hasNextLine()) {
-                records.add(scanner.nextLine());
+                records.add(columnReader.getRecordFromLine(scanner.nextLine(), columnNumber));
             }
             return records;
         }
@@ -32,16 +33,5 @@ public class FileRecordsReader implements RecordsReader {
             e.printStackTrace();
         }
         return records;
-    }
-    private String getRecordFromLine(String line, int columnNumber) {
-        //TODO: use this method because probably forgot and make another branch
-        List<String> values = new ArrayList<>();
-        try (Scanner rowScanner = new Scanner(line)) {
-            rowScanner.useDelimiter(",");
-            while (rowScanner.hasNext()) {
-                values.add(rowScanner.next().replaceAll("^\"|\"$", ""));
-            }
-        }
-        return values.get(columnNumber-1);
     }
 }
